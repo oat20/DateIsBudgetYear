@@ -1,0 +1,6 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(framework/fonts/mahidol/mahidol.css);
+.mahidolth{ font-family:mahidolth,sans-serif;}
+.mahidolen{ font-family:mahidolen,sans-serif;}

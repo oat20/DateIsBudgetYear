@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <!-- Loading Bootstrap -->
+    <link href="dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Loading Flat UI -->
+    <link href="dist/css/flat-ui.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container text-center">
+        <h1 id="demo">0</h1>
+        <button type="button" class="btn btn-primary btn-lg btn-wide" id="btn-click">Click for Counter</button>
+    </div>
+    
+    <script src="dist/js/vendor/jquery.min.js"></script>
+    <script src="dist/js/flat-ui.min.js"></script>
+    <script src="docs/assets/js/application.js"></script>
+    <script>
+        $(function(){
+            var clicks = 0;
+            $('button').click(function() {
+                clicks += 1;
+                document.getElementById("demo").innerHTML = clicks;
+            });
+        });
+    </script>
+</body>
+</html>

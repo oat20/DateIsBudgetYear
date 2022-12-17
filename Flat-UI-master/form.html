@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <!-- Loading Bootstrap -->
+    <link href="dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Loading Flat UI -->
+    <link href="dist/css/flat-ui.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <form method="POST" action="./form-action.php" id="frm-submit">
+            <div class="form-group">
+            <label>Name</label>
+            <input type="text" name="name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Surname</label>
+                <input type="text" name="surname" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary btn-wide">Submit</button>
+            <button type="button" class="btn btn-default btn-wide" id="btn-clickme">Click Me</button>
+        </form>
+
+            <button type="button" class="btn btn-success btn-wide" id="btn-clickme2">Click Me 2</button>
+
+    </div>
+    
+    <script src="dist/js/vendor/jquery.min.js"></script>
+    <script src="dist/js/vendor/video.js"></script>
+    <script src="dist/js/flat-ui.min.js"></script>
+    <script src="docs/assets/js/application.js"></script>
+    <!--<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        $(function(){
+            $('#frm-submit').submit(function(e) {
+                var form = $(this);
+                swal({
+                    title: "Are you sure?",
+                    text: "This form will be submitted",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                    .then(function (isOkay) {
+                        console.log(isOkay);
+                        if (isOkay) {
+                            form.submit();
+                        }
+                    });
+                return false;
+            });
+
+            $('#btn-clickme').click(function(e){
+                var form = $(this);
+                Swal.fire('Are You OK ?')
+                .then(function(isOkay){
+                    console.log(isOkay);
+                    if(isOkay.isConfirmed){
+                        $('#frm-submit').submit();
+                    }
+                })
+            });
+
+            $('#btn-clickme2').click(function(){
+                swal({
+                    title: 'Hello World'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

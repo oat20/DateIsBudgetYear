@@ -1,0 +1,12 @@
+/*@font-face {
+    font-family: 'db_helvethaica';
+    src: url('DBHelvethaicaXBdv3.2.ttf') format('truetype');
+	font-weight:bold;
+	font-style:normal;
+}*/
+@font-face {
+    font-family: 'dbhel';
+    src: url('DBHelvethaicaXv3.2.ttf');
+	font-weight:normal;
+	font-style:normal;
+}

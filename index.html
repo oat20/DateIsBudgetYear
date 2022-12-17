@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date is Budget Year</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">    
+<link href="./Flat-UI-master/dist/css/flat-ui.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="container">
+
+        <h2 class="text-center">Date is Budget Year</h2>
+        <form id="frm-convert">
+            <div class="form-group">
+                <label for="">Date</label>
+                <input type="date" name="" class="form-control input-hg" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+        </form>
+
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="myModel" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <!--<h4 class="modal-title">Modal title</h4>-->
+      </div>
+      <div class="modal-body text-center">
+        <p id="msg01">One fine body&hellip;</p>
+        <h2 id="msg02"></h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+    
+    <script src="./Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
+    <script src="./Flat-UI-master/dist/js/flat-ui.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('form').submit(function(e){
+                e.preventDefault();
+            });
+
+            $('form#frm-convert').submit(function(){
+                const dateInput = $('input[type="date"]').val();
+                console.log(dateInput);
+
+                const d = new Date(dateInput);
+                let textDate = d.toLocaleString('th-TH',{
+                    dateStyle: 'full'
+                });
+
+                $.ajax({
+                    'url': './budgetyear.php?date='+dateInput,
+                    'method': 'GET',
+                    'dataType': 'json'
+                }).then(function(data, status){
+                    console.log(data.budgetyear);
+                    console.log(status);
+                    if(status === 'success'){
+                        $('#myModel').modal('show');
+                        const modal = $('#myModel');
+                        modal.find('p#msg01').html(textDate+' ตรงกับปีงบประมาณ');
+                        modal.find('h2#msg02').html(data.budgetyear);
+                    }
+                });
+
+            });
+        });
+        </script>
+</body>
+</html>
