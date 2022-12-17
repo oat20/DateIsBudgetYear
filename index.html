@@ -59,7 +59,7 @@
                 });
 
                 $.ajax({
-                    'url': './budgetyear.php?date='+dateInput,
+                    'url': './api/budgetyear.php?date='+dateInput,
                     'method': 'GET',
                     'dataType': 'json'
                 }).then(function(data, status){
