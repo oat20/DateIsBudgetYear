@@ -20,6 +20,11 @@
             <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
         </form>
 
+        <div style="margin-top: 50px;">
+            <p class="text-muted">API Example</p>
+            <div id="apiUrl"></div>
+        </div>
+
     </div>
 
     <div class="modal fade" tabindex="-1" role="dialog" id="myModel" data-backdrop="static" data-keyboard="false">
@@ -72,8 +77,14 @@
                         modal.find('h2#msg02').html(data.budgetyear);
                     }
                 });
-
             });
+
+            const d2 = new Date();
+            const dateNow = d2.toLocaleString('fr-CA',{
+                dateStyle: 'short'
+            });
+            const apiUrl = '<pre><kbd>GET</kbd> '+location.href+'api/budgetyear.php?date='+dateNow+'</pre>';
+            $('#apiUrl').html(apiUrl); 
         });
         </script>
 </body>
